@@ -35,6 +35,7 @@ public class securityDemo extends HttpServlet {
 		     PrintWriter out = response.getWriter();
 		     String password = request.getParameter("password");
 		  try {
+			  //encryption of  the password
 			 SecretKeySpec skeySpec = new SecretKeySpec(keyString.getBytes(), AlgoName);
 		     Cipher cipher = Cipher.getInstance(AlgoName);
 		        
@@ -62,6 +63,7 @@ public class securityDemo extends HttpServlet {
 				Statement stat = conn.createStatement();
 				ResultSet rs = stat.executeQuery("select * from security");
 				while (rs.next()) {
+					// decryption of the password
 					String pass = rs.getString("password");
 					 SecretKeySpec skeySpec = new SecretKeySpec(keyString.getBytes(), AlgoName);
 				        Cipher cipher = Cipher.getInstance(AlgoName);
